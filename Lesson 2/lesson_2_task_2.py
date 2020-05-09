@@ -24,6 +24,13 @@ class Market:
             summ_of_markets +=i
         print(summ_of_markets)
 
+    def __add__(self, other):
+        Total_value = Market(name=self.name, value=self.value + other.value)
+        return print(Total_value)
+
+    def __str__(self):
+        return self.name
+        
 
 Allo = Market('Allo', 400)
 Citrus = Market('Citrus', 500)
@@ -31,7 +38,7 @@ Citrus = Market('Citrus', 500)
 print(Allo.incr())
 print(Citrus.incr())
 
-print(Allo.summ_markets())
+Allo+Citrus
 
 # TOTAL = Market('Total', 0)
 # print(TOTAL.summ_markets())
