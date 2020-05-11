@@ -11,15 +11,16 @@ class Market:
     def __init__(self, name, value):
         self.name = name
         self.value = value
+        self.Total_value += self.value
 
     def plusser(self, value):
-        Market.Total_value += value
+        return Market.Total_value + value
 
 
 Allo = Market('Allo', 400)
 Citrus = Market('Citrus', 500)
 
-print(Allo.plusser())
+print(Allo.plusser(300))
 
 
 
