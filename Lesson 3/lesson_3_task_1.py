@@ -2,21 +2,24 @@
 # Который будет вызывать функцию, определенное кол-во раз, 
 # будет выводить кол-во времени затраченного на выполнение данной функции и ее название.
 import random
+import time
 
 def my_decorator(func):
 
-    def wrapper():
-        i = 10
-        result = i*func()
-        print (result)
-        return result
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        for i in range (1, 100):
+            result = func(*args, **kwargs)
+            print (result)
+        my_time = time.time()-start_time
+        print(f'Время выполнения программы: {my_time}')
+        return result 
         
-
     return wrapper
+
 
 @my_decorator
 def my_func():
-
-   return random.randint(1, 100)
+   return random.randint(1, 20)
 
 my_func()
