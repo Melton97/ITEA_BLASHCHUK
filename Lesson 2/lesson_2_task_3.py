@@ -49,7 +49,9 @@ class Dot:
         new_dot = self._x / other._x, self._y / other._y, self._z / other._z
         return new_dot
 
-    
+    def __neg__(self):
+        return self._x, self._y, self._z
+
 
 first_dot = Dot(1, 2, 3)
 second_dot = Dot(1, 2, 3)
@@ -58,5 +60,5 @@ print(first_dot+second_dot)
 print(first_dot-second_dot)
 print(first_dot*second_dot)
 print(first_dot/second_dot)
-
+print(first_dot.__neg__())
     
