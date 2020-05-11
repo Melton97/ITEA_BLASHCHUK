@@ -13,14 +13,15 @@ class Market:
         self.value = value
         self.Total_value += self.value
 
-    def plusser(self, value):
-        return Market.Total_value + value
+    def plusser(self):
+        return Market.Total_value = Total_value + self.value
 
 
 Allo = Market('Allo', 400)
 Citrus = Market('Citrus', 500)
 
-print(Allo.plusser(300))
+Allo.plusser()
+print(Market.Total_value)
 
 
 

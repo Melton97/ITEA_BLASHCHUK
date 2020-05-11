@@ -34,23 +34,29 @@ class Dot:
         self._z = new_value
 
     def __add__(self, other):
-        return self._x + other._x and self._y + other._y and self._z + other._z
-    
+        new_dot = self._x + other._x, self._y + other._y, self._z + other._z
+        return new_dot
+
     def __sub__(self, other):
-        return self._x - other._x and self._y - other._y and self._z - other._z
+        new_dot = self._x - other._x, self._y - other._y, self._z - other._z
+        return new_dot
 
     def __mul__(self, other):
-        return self._x * other._x and self._y * other._y and self._z * other._z
+        new_dot = self._x * other._x, self._y * other._y, self._z * other._z
+        return new_dot
 
     def __truediv__(self, other):
-        return self._x / other._x and self._y / other._y and self._z / other._z
+        new_dot = self._x / other._x, self._y / other._y, self._z / other._z
+        return new_dot
 
+    
 
 first_dot = Dot(1, 2, 3)
 second_dot = Dot(1, 2, 3)
 
-
-
-print(first_dot.__mul__(second_dot))
+print(first_dot+second_dot)
+print(first_dot-second_dot)
+print(first_dot*second_dot)
+print(first_dot/second_dot)
 
     
