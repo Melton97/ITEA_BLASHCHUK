@@ -12,6 +12,7 @@
 import abc
 from datetime import datetime
 
+
 class PersonAbstract(abc.ABC):
     
     @abc.abstractmethod
@@ -32,18 +33,18 @@ class Abiturient(PersonAbstract):
         self.faculty = faculty
 
     def view(self):
-        
+        date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
         print(f'В системе есть следующая информация:')
         print(f'Фамилия: {self.name}')
-        print(f'Дата рождения: {self.age_old}')
-        print(f'Факультет: {self.faculty}')
+        print(f'Дата рождения: {date_1}')
+        print(f'Факультет: {self.faculty}','\n')
 
     def current_age (self):
         today = datetime.today()
         date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
 
-        current_age_of_person = today - date_1
-        print(f'Сейчас ему/ей: {current_age_of_person}')
+        current_age_of_person = today.year - date_1.year
+        print(f'Сейчас ему/ей: {current_age_of_person}','\n')
 
 class Student(PersonAbstract):
     
@@ -55,14 +56,19 @@ class Student(PersonAbstract):
 
     def view(self):
         
+        date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
         print(f'В системе есть следующая информация:')
         print(f'Фамилия: {self.name}')
-        print(f'Дата рождения: {self.age_old}')
+        print(f'Дата рождения: {date_1}')
         print(f'Факультет: {self.faculty}')
-        print(f'Курс: {self.kurs}')
+        print(f'Курс: {self.kurs}','\n')
 
     def current_age (self):
-        pass
+        today = datetime.today()
+        date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
+
+        current_age_of_person = today.year - date_1.year
+        print(f'Сейчас ему/ей: {current_age_of_person}','\n')
 
 
 class Teacher(PersonAbstract):
@@ -76,18 +82,29 @@ class Teacher(PersonAbstract):
 
     def view(self):
         
+        date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
         print(f'В системе есть следующая информация:')
         print(f'Фамилия: {self.name}')
-        print(f'Дата рождения: {self.age_old}')
+        print(f'Дата рождения: {date_1}')
         print(f'Факультет: {self.faculty}')
         print(f'Должность: {self.position}')
-        print(f'Стаж лет: {self.years}')
+        print(f'Стаж лет: {self.years}','\n')
 
     def current_age (self):
-        pass
+        today = datetime.today()
+        date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
+
+        current_age_of_person = today.year - date_1.year
+        print(f'Сейчас ему/ей: {current_age_of_person}','\n')
 
 
-ABB1 = Abiturient('Kolesnikov', '14/05/2000', 'fea')
+Larisa = Abiturient('Kolesnikov', '14/05/2000', 'fea')
+Marta = Student('Kozakova', '12/01/1995', 'fea', '3')
+Oksana = Teacher('Oreshkina', '15/05/1970', 'fea', 'Decan', '10')
 
-ABB1.view()
-ABB1.current_age()
+Larisa.view()
+Larisa.current_age()
+Marta.view()
+Marta.current_age()
+Oksana.view()
+Oksana.current_age()
