@@ -2,11 +2,11 @@
 #В этом списке вывести все четные значения
 
 
-N = int(input())
+n = int(input())
 
 my_list = []
 
-for i in range(0, N+1, 1):
+for i in range(0, n+1, 1):
     my_list.append(i)
 
 print(my_list)
