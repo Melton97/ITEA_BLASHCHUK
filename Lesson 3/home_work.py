@@ -19,7 +19,7 @@ class MyStack:
         print (my_stack)
 
 
-    
+
 q = MyStack(100, 1000)
 
 q.init_stack(100, 1000)

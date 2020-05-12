@@ -30,11 +30,11 @@ class BigCar(Car):
         print('Lessles braking...')
 
 BMW = Car(4, 4.4, 'f15')
-print(BMW.move())
-print(BMW.brake())
+BMW.move()
+BMW.brake()
 
 Audi = LittleCar(4, 4.0, 8)
-print(Audi.move())
+Audi.move()
 
 Kamaz = BigCar(10, 3.0, 10)
-print(Kamaz.brake())
+Kamaz.brake()
