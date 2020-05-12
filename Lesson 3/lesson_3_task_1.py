@@ -12,7 +12,7 @@ def my_decorator(func):
             result = func(*args, **kwargs)
             print (result)
         my_time = time.time()-start_time
-        print(f'Время выполнения программы: {my_time}')
+        print(f'Время выполнения программы {func}: {my_time}')
         return result 
         
     return wrapper
