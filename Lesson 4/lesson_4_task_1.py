@@ -44,7 +44,9 @@ class Abiturient(PersonAbstract):
         date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
 
         current_age_of_person = today.year - date_1.year
-        print(f'Сейчас ему/ей: {current_age_of_person}','\n')
+        return current_age_of_person
+        #print(f'Сейчас ему/ей: {current_age_of_person}','\n')
+        
 
 class Student(PersonAbstract):
     
@@ -68,7 +70,9 @@ class Student(PersonAbstract):
         date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
 
         current_age_of_person = today.year - date_1.year
-        print(f'Сейчас ему/ей: {current_age_of_person}','\n')
+        return current_age_of_person
+        #print(f'Сейчас ему/ей: {current_age_of_person}','\n')
+        
 
 
 class Teacher(PersonAbstract):
@@ -95,16 +99,29 @@ class Teacher(PersonAbstract):
         date_1 = datetime.strptime(self.age_old, "%d/%m/%Y")
 
         current_age_of_person = today.year - date_1.year
-        print(f'Сейчас ему/ей: {current_age_of_person}','\n')
+        return current_age_of_person
+        #print(f'Сейчас ему/ей: {current_age_of_person}','\n')
+        
 
 
 Larisa = Abiturient('Kolesnikov', '14/05/2000', 'fea')
 Marta = Student('Kozakova', '12/01/1995', 'fea', '3')
 Oksana = Teacher('Oreshkina', '15/05/1970', 'fea', 'Decan', '10')
 
-Larisa.view()
-Larisa.current_age()
-Marta.view()
-Marta.current_age()
-Oksana.view()
-Oksana.current_age()
+main_list = [Larisa, Marta, Oksana]
+
+def full_info():
+    for item in main_list:
+        item.view()
+        print(f'Сейчас ему/ей: {item.current_age()}')
+
+def filter_age(age1, age2):
+    for item in main_list:
+        if age1 < item.current_age() < age2:
+            item.view()
+            print(f'Сейчас ему/ей: {item.current_age()}')
+
+        else: None
+
+full_info()
+filter_age(21, 29)
