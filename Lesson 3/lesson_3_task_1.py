@@ -8,7 +8,7 @@ def my_decorator(func):
 
     def wrapper(*args, **kwargs):
         start_time = time.time()
-        for i in range (1, 1000):
+        for _i in range (1, 1000):
             result = func(*args, **kwargs)
             print (result)
         my_time = time.time()-start_time
