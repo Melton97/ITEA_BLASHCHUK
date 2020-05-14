@@ -7,40 +7,84 @@ import random
 
 class MyStack:
 
-    def __init__(self, rand, val):
-        self.rand = rand
-        self.val = val
+    def __init__(self, new_list):
+        self.new_list = new_list
 
-    def init_stack(self, rand, val):
-        my_stack = deque()
-        for i in range(1, self.val):
-            a = random.randint(1, self.rand)
-            my_stack.append(a)
-        print (my_stack)
+    def create_stack(self):
+        new_stack = deque()
+        for i in self.new_list:
+            new_stack.append(i)   
+
+        return new_stack
+        
+    def __str__(self):
+        return deque()
 
 class MyRow:
 
-    def __init__(self, rand, val):
-        self.rand = rand
-        self.val = val
+    def __init__(self, new_row):
+        self.new_row = new_row
 
-    def init_row(self, rand, val):
-        my_row = deque()
-        for i in range(1, self.val):
-            a = random.randint(1, self.rand)
-            my_row.append(a)
-        print (my_row)
+    def create_row(self):
+        new_row = deque()
+        for i in self.new_row:
+            new_row.append(i)   
+
+        return new_row     
+
+    def pop(self):
+        self.new_row.pop(0)
+
+    def __str__(self):
+        return deque()
 
 class Complex:
-    pass
+    
+    def __init__(self, re, imag):
+        self.re = re
+        self.imag = imag
 
-    #делаем комплексное число и переопределяем для него ариф операции , нужен будет str
+    def create_compl(self):
 
-q = MyStack(100, 1000)
-t = MyRow(10, 10)
-q.init_stack(100, 1000)
-t.init_row(10, 10)
+        new_compl = complex(self.re, self.imag)
+        return new_compl 
+
+    def __add__(self, other):
+        new_compl2 = complex(self.re + other.re, self.imag + other.imag)
+        return new_compl2
+
+    def __sub__(self, other):
+        new_compl2 = complex(self.re - other.re, self.imag - other.imag)
+        return new_compl2
+
+    def __mul__(self, other):
+        new_compl2 = complex((self.re*other.re) - (self.imag*other.imag), (self.imag*other.re)+(self.re*other.imag))
+        return new_compl2
+
+    def __truediv__(self, other):
+        new_compl2 = complex( (self.re*other.re + self.imag*other.imag)/(other.re**2 + other.imag**2), (self.imag*other.re - self.re*other.imag)/(other.re**2 + other.imag**2) )
+        return new_compl2
+
+    def __str__(self):
+        pass 
+    
+
+my_compl1 = Complex(10, 100)
+my_compl2 = Complex(20, 20)
+
+print(my_compl1 * my_compl2)
+print(my_compl1 / my_compl2)
+
+q = [ i for i in range(10)]
+q = MyStack(q)
+print(q.create_stack())
             
+r = [ i for i in range(10)]
+r = MyRow(r)
+print(r.create_row())
+r.pop()
+print(r.create_row())
+
 
 
 
