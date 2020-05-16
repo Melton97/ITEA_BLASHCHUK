@@ -16,6 +16,13 @@ class MyStack:
             new_stack.append(i)   
 
         return new_stack
+
+    def push(self):
+        pass
+
+    def pop(self):
+        pass
+
         
     def __str__(self):
         return deque()
@@ -34,6 +41,12 @@ class MyRow:
 
     def pop(self):
         self.new_row.pop(0)
+
+    def queue(self):
+        pass
+
+    def deque(self):
+        pass
 
     def __str__(self):
         return deque()

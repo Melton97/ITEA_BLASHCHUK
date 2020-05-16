@@ -9,7 +9,7 @@ def my_decorator(func):
     def wrapper(val2):
         start_time = time.time()
 
-        for i in range(val2):
+        for _i in range(val2):
             result = func(val2)
             print (result)
         my_time = time.time() - start_time
