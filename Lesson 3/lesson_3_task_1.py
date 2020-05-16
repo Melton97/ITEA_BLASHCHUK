@@ -6,20 +6,22 @@ import time
 
 def my_decorator(func):
 
-    def wrapper(*args, **kwargs):
+    def wrapper(val2):
         start_time = time.time()
-        for _i in range (1, 1000):
-            result = func(*args, **kwargs)
+
+        for i in range(val2):
+            result = func(val2)
             print (result)
-        my_time = time.time()-start_time
-        print(f'Время выполнения программы {func}: {my_time}')
+        my_time = time.time() - start_time
+        print(f'Время выполнения программы {func.__name__}: {my_time}')
         return result 
         
     return wrapper
 
 
 @my_decorator
-def my_func():
-   return random.randint(1, 100)
+def my_func(val2):
+   return random.randint(1, val2)
+   
 
-my_func()
+my_func(100)
