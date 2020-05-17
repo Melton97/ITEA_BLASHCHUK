@@ -9,7 +9,8 @@ def deco_thread(func):
 
     def wrapper(name_of_thread, daemon):
 
-        name_of_thread = Thread(target = func, args = (name_of_thread), daemon = daemon )
+        name_of_thread = Thread(target = func, args = (name_of_thread, daemon), daemon = daemon )
+        name_of_thread.start()
         time.sleep(2)
 
     return wrapper
@@ -17,7 +18,7 @@ def deco_thread(func):
 @deco_thread
 def my_func(name_of_thread, daemon):
     
-    with open("ITEA_Lessons/my_file_5_2", "w") as mf:
+    with open("my_file_5_2", "w") as mf:
         mf.write("For a test in lesson 5, task 1")
     
     return name_of_thread, daemon
