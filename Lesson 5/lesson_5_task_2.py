@@ -10,27 +10,30 @@ import requests
 
 def deco_thread(func):
 
-    def wrapper(*args, **kwargs):
-        
-        name_of_thread = Thread(target = func, args = (), daemon = False)
-        name_of_thread.start()
+    def wrapper(list, i):
+        thread_list = []
+        for x in list:
+            print(f"Начинаю скачивать ссылку {list.index(x)} !!!")
+            thread_num = Thread(target = func, args = (list, i, ), daemon = False)
+            thread_list.append(thread_num)
+            thread_num.start()
+            thread_num.join()
+            print(f"Скачивание ссылки {list.index(x)} закончилось!!!")
+
 
     return wrapper
 
-#@deco_thread
-def download_func(list):
+@deco_thread
+def download_func(list, i):
 
-    for i in list:
-        req = requests.get(i)
-        status = req.status_code
-        if status == 200:
-            with open(str(list.index(i)) +'Kiss.jpg', 'wb') as fd:
-                fd.write(req.content)
-        else : print("Не установлено соединение с изображением.")
-    
-    name_of_thread = "Simple_Thread"
-    daemon = False
-    return name_of_thread, daemon
+    m = i[0]
+    req = requests.get(list[m])
+    status = req.status_code
+    if status == 200:
+        with open(str(i[0]) +'Kiss.jpg', 'wb') as fd:
+            fd.write(req.content)
+    else : print("Не установлено соединение с изображением.")
+    i.pop(0)
 
 
 url1 = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg/1024px-The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg'
@@ -44,5 +47,7 @@ url8 = 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Pissarro_Self_portra
 url9 = 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Schepkina-Kupernik_by_Repin.jpg'
 url10 = 'https://upload.wikimedia.org/wikipedia/commons/9/9c/The_Death_of_Dido_%281781%29%3B_Joshua_Reynolds.jpg'
 
-list_of_urls = [url2, url1, url3, url4, url5, url6, url7, url8, url9, url10]
-download_func(list_of_urls)
+list_of_urls = [url1, url2, url3, url4, url5, url6, url7, url8, url9, url10]
+i = [x for x in range(10)]
+download_func(list_of_urls, i)
+
