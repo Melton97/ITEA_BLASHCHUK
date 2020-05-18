@@ -34,15 +34,15 @@ def download_func(list):
 
 
 url1 = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg/1024px-The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg'
-url2 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%9C%D0%BE%D0%BD%D0%B0-%D0%9B%D0%B8%D0%B7%D0%B0.jpg'
-url3 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%A0%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%92%D0%B5%D0%BD%D0%B5%D1%80%D1%8B.jpg'
-url4 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%A1%D0%BE%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%B8%D0%B5-%D0%90%D0%B4%D0%B0%D0%BC%D0%B0.jpg'
-url5 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D1%83%D1%82%D1%80%D0%BE-%D0%B2-%D1%81%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BE%D0%BC-%D0%BB%D0%B5%D1%81%D1%83.jpg'
-url6 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%B4%D0%B5%D0%B2%D0%BE%D1%87%D0%BA%D0%B0-%D0%BD%D0%B0-%D1%88%D0%B0%D1%80%D0%B5.jpg'
-url7 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/04/%C2%AB%D0%9F%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BD%D0%B8%D0%B9-%D0%B4%D0%B5%D0%BD%D1%8C-%D0%9F%D0%BE%D0%BC%D0%BF%D0%B5%D0%B8%C2%BB.jpg'
-url8 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%B7%D0%B2%D0%B5%D0%B7%D0%B4%D0%BD%D0%B0%D1%8F-%D0%BD%D0%BE%D1%87%D1%8C.jpg'
-url9 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%B4%D0%B5%D0%B2%D1%8F%D1%82%D1%8B%D0%B9-%D0%B2%D0%B0%D0%BB.jpg'
-url10 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82.jpg'
+url2 = 'https://upload.wikimedia.org/wikipedia/commons/5/56/El_Greco_-_Saint_James_the_Younger_-_Google_Art_Project.jpg'
+url3 = 'https://upload.wikimedia.org/wikipedia/commons/0/09/Alessandro_Magnasco_-_Praying_Monks_-_WGA13854.jpg'
+url4 = 'https://upload.wikimedia.org/wikipedia/commons/9/98/Alessandro_Magnasco_-_Entombment_of_a_Soldier_-_WGA13858.jpg'
+url5 = 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Santo_Domingo_en_oraci%C3%B3n.jpg'
+url6 = 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Titian_-_Madonna_and_Child_with_Saints_%28detail%29_-_WGA22792.jpg'
+url7 = 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Giorgione%2C_Portrait_of_a_Young_Man_2.jpg'
+url8 = 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Pissarro_Self_portrait_DMA_1985-R-44.jpg'
+url9 = 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Schepkina-Kupernik_by_Repin.jpg'
+url10 = 'https://upload.wikimedia.org/wikipedia/commons/9/9c/The_Death_of_Dido_%281781%29%3B_Joshua_Reynolds.jpg'
 
 list_of_urls = [url2, url1, url3, url4, url5, url6, url7, url8, url9, url10]
 download_func(list_of_urls)
