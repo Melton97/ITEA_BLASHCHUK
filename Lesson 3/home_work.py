@@ -8,48 +8,25 @@ import random
 class MyStack:
 
     def __init__(self, new_list):
-        self.new_list = new_list
+        self.new_stack = []
 
-    def create_stack(self):
-        new_stack = deque()
-        for i in self.new_list:
-            new_stack.append(i)   
-
-        return new_stack
-
-    def push(self):
-        pass
+    def push(self, val):
+        return self.new_stack.append(val)
 
     def pop(self):
-        pass
-
-        
-    def __str__(self):
-        return deque()
+        return self.new_stack.pop()
 
 class MyRow:
 
     def __init__(self, new_row):
-        self.new_row = new_row
+        self.new_row = new_row.deque()
 
-    def create_row(self):
-        new_row = deque()
-        for i in self.new_row:
-            new_row.append(i)   
-
-        return new_row     
-
-    def pop(self):
-        self.new_row.pop(0)
-
-    def queue(self):
-        pass
+    def queue(self, val):
+        return self.new_row.insert(0, val)
 
     def deque(self):
-        pass
+        return self.new_row.pop()
 
-    def __str__(self):
-        return deque()
 
 class Complex:
     
@@ -87,16 +64,6 @@ my_compl2 = Complex(20, 20)
 
 print(my_compl1 * my_compl2)
 print(my_compl1 / my_compl2)
-
-q = [ i for i in range(10)]
-q = MyStack(q)
-print(q.create_stack())
-            
-r = [ i for i in range(10)]
-r = MyRow(r)
-print(r.create_row())
-r.pop()
-print(r.create_row())
 
 
 

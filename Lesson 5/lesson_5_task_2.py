@@ -12,20 +12,22 @@ def deco_thread(func):
 
     def wrapper(*args, **kwargs):
         
-        name_of_thread = Thread(target = func, args = (url, ), daemon = False)
+        name_of_thread = Thread(target = func, args = (), daemon = False)
         name_of_thread.start()
 
     return wrapper
 
-@deco_thread
-def download_func(url):
+#@deco_thread
+def download_func(list):
 
-    req = requests.get(url)
-    status = req.status_code
-    if status == 200:
-        with open('Kiss.jpg', 'wb') as fd:
-            fd.write(req.content)
-    else : print("Не установлено соединение с изображением.")
+    for i in list:
+        req = requests.get(i)
+        status = req.status_code
+        if status == 200:
+            with open(str(list.index(i)) +'Kiss.jpg', 'wb') as fd:
+                fd.write(req.content)
+        else : print("Не установлено соединение с изображением.")
+    
     name_of_thread = "Simple_Thread"
     daemon = False
     return name_of_thread, daemon
@@ -42,3 +44,5 @@ url8 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%B7%D0%B2%D0%
 url9 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%B4%D0%B5%D0%B2%D1%8F%D1%82%D1%8B%D0%B9-%D0%B2%D0%B0%D0%BB.jpg'
 url10 = 'https://www.annaorion.com.ua/wp-content/uploads/2016/05/%D0%BF%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82.jpg'
 
+list_of_urls = [url2, url1, url3, url4, url5, url6, url7, url8, url9, url10]
+download_func(list_of_urls)
