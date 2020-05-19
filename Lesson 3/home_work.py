@@ -28,42 +28,40 @@ class MyRow:
         return self.new_row.pop()
 
 
-class Complex:
+class MyComplex:
     
     def __init__(self, re, imag):
         self.re = re
         self.imag = imag
 
-    def create_compl(self):
-
-        new_compl = complex(self.re, self.imag)
-        return new_compl 
 
     def __add__(self, other):
-        new_compl2 = complex(self.re + other.re, self.imag + other.imag)
+        new_compl2 = MyComplex(self.re + other.re, self.imag + other.imag)
         return new_compl2
 
     def __sub__(self, other):
-        new_compl2 = complex(self.re - other.re, self.imag - other.imag)
+        new_compl2 = MyComplex(self.re - other.re, self.imag - other.imag)
         return new_compl2
 
     def __mul__(self, other):
-        new_compl2 = complex((self.re*other.re) - (self.imag*other.imag), (self.imag*other.re)+(self.re*other.imag))
+        new_compl2 = MyComplex((self.re*other.re) - (self.imag*other.imag), (self.imag*other.re)+(self.re*other.imag))
         return new_compl2
 
     def __truediv__(self, other):
-        new_compl2 = complex( (self.re*other.re + self.imag*other.imag)/(other.re**2 + other.imag**2), (self.imag*other.re - self.re*other.imag)/(other.re**2 + other.imag**2) )
+        new_compl2 = MyComplex((self.re*other.re + self.imag*other.imag)/(other.re**2 + other.imag**2), (self.imag*other.re - self.re*other.imag)/(other.re**2 + other.imag**2))
         return new_compl2
 
     def __str__(self):
-        pass 
+        return f'({self.re}, {self.imag}j)'
     
 
-my_compl1 = Complex(10, 100)
-my_compl2 = Complex(20, 20)
+my_compl1 = MyComplex(10, 100)
+
+my_compl2 = MyComplex(20, 20)
 
 print(my_compl1 * my_compl2)
 print(my_compl1 / my_compl2)
+
 
 
 

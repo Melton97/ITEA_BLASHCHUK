@@ -53,6 +53,7 @@ class User:
         pass
 
 
+input("")
 Pavel = Registration('Pavel', 'pav', 'pav333')
 Pavel.Sign_Up()
 print(Registration.global_user_log)
