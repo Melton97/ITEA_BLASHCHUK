@@ -18,8 +18,8 @@ class Registration:
         self.password = password
 
     def Sign_Up(self):
-        print("Привет, давай начнем регистрацию!")
-        print("Проверьте правильность введенных данных:")
+
+        print("Проверьте правильность введенных данных:", "\n")
         print(f'Тебя зовут : {self.user_name}, твой логин: {self.login}, твой пароль: {self.password}')
         
         corr = input("Если данные для регистрации введены верно, нажмите Y, если нет то N: ")
@@ -53,7 +53,18 @@ class User:
         pass
 
 
-input("")
-Pavel = Registration('Pavel', 'pav', 'pav333')
+user_name = input("Введите ваше имя для регистрации:")
+login = input("Введите ваш логин для регистрации:")
+while True:
+    password = input("Введите ваш пароль для регистрации")
+    password_double = input("Подтвердите, пожалуйста, ваш пароль:")
+    if password == password_double:
+        print("Ок, форма регистрации завершена!", "\n")
+        break
+
+    else: print("Пароли не совпадают !\n")
+
+
+Pavel = Registration(user_name, login, password)
 Pavel.Sign_Up()
 print(Registration.global_user_log)
