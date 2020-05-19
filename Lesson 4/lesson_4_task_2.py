@@ -6,7 +6,7 @@
 # 5)Создать класс User, котоырй должен разделять роли обычного пользователя и администратора. 
 # 6)При входе под обычным пользователем мы можем добавить новый пост, с определённым содержимим, так же пост должен содержать дату публикации. 
 # 7)Под учётной записью администратора мы можем увидеть всех пользователей нашей системы, дату их регистрации, и их посты.
-import datetime
+from datetime import datetime, date, time
 
 class Registration:
     
@@ -25,7 +25,13 @@ class Registration:
         corr = input("Если данные для регистрации введены верно, нажмите Y, если нет то N: ")
 
         if corr == 'Y':
-            Registration.global_user_log = {"user_name" : self.user_name, "login" : self.login, "password" : self.password, "date_registration" : datetime.time()}
+            Registration.global_user_log = {
+                self.user_name: {
+                    "login": self.login,
+                    "password": self.password,
+                    "date_registration": datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+                }
+            }
             print("Регистрация прошла успешно, спасибо!")
      
         elif corr == 'N':
@@ -36,11 +42,16 @@ class Registration:
 
 
 class Authorisation(Registration):
+
+    def __init__(self,user_name, login, password):
+        self.user_name = user_name
+        self.login = login
+        self.password = password
     
     def Sign_In(self):
-
-        pass
-
+        if Registration.global_user_log[self.user_name]["login"] == self.login and Registration.global_user_log[self.user_name]["password"] == self.password:
+            print("Вы ввошли в аккаунт под именем ")        
+        else: pass
     def Exit(self):
         pass
 
@@ -53,10 +64,12 @@ class User:
         pass
 
 
+
+
 user_name = input("Введите ваше имя для регистрации:")
 login = input("Введите ваш логин для регистрации:")
 while True:
-    password = input("Введите ваш пароль для регистрации")
+    password = input("Введите ваш пароль для регистрации:")
     password_double = input("Подтвердите, пожалуйста, ваш пароль:")
     if password == password_double:
         print("Ок, форма регистрации завершена!", "\n")
@@ -65,6 +78,9 @@ while True:
     else: print("Пароли не совпадают !\n")
 
 
-Pavel = Registration(user_name, login, password)
-Pavel.Sign_Up()
+
+user1 = Registration(user_name, login, password)
+user1.Sign_Up()
 print(Registration.global_user_log)
+
+
