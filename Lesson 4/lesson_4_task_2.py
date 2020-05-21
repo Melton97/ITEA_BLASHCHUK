@@ -80,13 +80,16 @@ class User(Authorisation):
 
         print(Authorisation.posts)
         
-    def Admin_user(self, *args):
-        if args == "super_user":
-            print("Вы ввошли в систему как администратор!")
+    def Admin_user(self, key):
 
-    def view_global(self, *args):
-        if str(args) == "super_user":
-            print(Registration.global_user_log)
+        if key == 'super_user':
+            print("Вы ввошли в систему как администратор!")
+        else: print("Вы ввели неправильный админ-ключ!")
+
+    def view_global(self, key):
+        if key == "super_user":
+            print(f"Ниже список всех пользователей системы:\n {Registration.global_user_log}")
+            print(f"А также их посты:\n {Authorisation.posts}")
                 
 
 def validate(password):
@@ -133,7 +136,7 @@ while True:
 
     else: pass
 
-
+admin_key = 'super_user'
 
 user1 = Registration(user_name, login, password)
 user1.Sign_Up()
@@ -147,5 +150,5 @@ user1.Change_Account(user_name, login, password)
 
 user1 = User(user_name, login, password)
 user1.Simple_user_post()
-user1.Admin_user("super_user")
+user1.Admin_user(admin_key)
 user1.view_global("super_user")
