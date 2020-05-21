@@ -6,6 +6,7 @@
 # 5)Создать класс User, котоырй должен разделять роли обычного пользователя и администратора. 
 # 6)При входе под обычным пользователем мы можем добавить новый пост, с определённым содержимим, так же пост должен содержать дату публикации. 
 # 7)Под учётной записью администратора мы можем увидеть всех пользователей нашей системы, дату их регистрации, и их посты.
+
 from datetime import datetime, date, time
 import re
 
@@ -43,6 +44,8 @@ class Registration:
 
 
 class Authorisation(Registration):
+    
+    posts = {}
 
     def __init__(self,user_name, login, password):
         self.user_name = user_name
@@ -54,16 +57,36 @@ class Authorisation(Registration):
             print(f"Вы ввошли в аккаунт под именем {self.user_name}")        
         else: pass
     def Exit(self):
-        pass
+        return print(f"Вы вышли с аккаунта {self.user_name}")
 
-    def Change_Account(self):
-        pass
+    def Change_Account(self,user_name, login, password):
+        print("Вход в другой аккаунт:")
+        if Registration.global_user_log[self.user_name]["login"] == self.login and Registration.global_user_log[self.user_name]["password"] == self.password:
+            print(f"Вы ввошли в аккаунт под именем {self.user_name}")        
+        else: pass
+        
 
-class User:
+class User(Authorisation):
     
-    def Post(self):
-        pass
+    def Simple_user_post(self):
 
+        post = input("Введите текст поста который нужно опубликовать: \n")
+
+        Authorisation.posts = {
+            self.user_name: {
+            "post": post,
+            "post_date": datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+        }}
+
+        
+    def Admin_user(self, *args):
+        if args == "super_user":
+            print("Вы ввошли в систему как администратор!")
+
+    def view_global(self, *args):
+        if args == "super_user":
+            return print(Registration.global_user_log)
+                
 
 def validate(password):
        while True:
@@ -81,8 +104,22 @@ def validate(password):
                print("Проверка пароля пошла успешно!")
                return True
 
+def validate_login(login):
+    if login in Registration.global_user_log:
+        return False
+    else: return True
+
+
 user_name = input("Введите ваше имя для регистрации:")
-login = input("Введите ваш логин для регистрации:")
+
+while True:
+    login = input("Введите ваш логин для регистрации:")
+    if validate_login(login) is False:
+        print("Пользователь с таким логином уже существует!")
+    else: 
+        print("Проверка логина прошла успешно!")
+        break
+
 while True:
     password = input("Введите ваш пароль для регистрации:")
     if validate(password) is True:
