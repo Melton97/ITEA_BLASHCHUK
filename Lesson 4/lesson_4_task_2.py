@@ -52,7 +52,7 @@ class Authorisation(Registration):
         self.login = login
         self.password = password
     
-    def Sign_In(self):
+    def Sign_In(self, login, password):
         if Registration.global_user_log[self.user_name]["login"] == self.login and Registration.global_user_log[self.user_name]["password"] == self.password:
             print(f"Вы ввошли в аккаунт под именем {self.user_name}")        
         else: pass
@@ -78,14 +78,15 @@ class User(Authorisation):
             "post_date": datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
         }}
 
+        print(Authorisation.posts)
         
     def Admin_user(self, *args):
         if args == "super_user":
             print("Вы ввошли в систему как администратор!")
 
     def view_global(self, *args):
-        if args == "super_user":
-            return print(Registration.global_user_log)
+        if str(args) == "super_user":
+            print(Registration.global_user_log)
                 
 
 def validate(password):
@@ -139,4 +140,12 @@ user1.Sign_Up()
 print(Registration.global_user_log)
 
 user1 = Authorisation(user_name, login, password)
-user1.Sign_In()
+user1.Sign_In(login, password)
+
+user1.Exit()
+user1.Change_Account(user_name, login, password)
+
+user1 = User(user_name, login, password)
+user1.Simple_user_post()
+user1.Admin_user("super_user")
+user1.view_global("super_user")
