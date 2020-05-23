@@ -10,7 +10,13 @@ from bs4 import BeautifulSoup
 import pprint
 from tabulate import tabulate
 
+CITY = input("Введите название города: \n")
+# DATE = input("На какую дату?: \n")
+
 URL = 'https://ua.sinoptik.ua/'
+if CITY:
+    URL = 'https://ua.sinoptik.ua/погода-' + CITY
+
 HEADERS = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:76.0) Gecko/20100101 Firefox/76.0'}
 
 def get_html(url, params=None):
@@ -33,8 +39,10 @@ def get_content(html):
             'temp_max': item.find_all('div', class_ = 'max')[-1].get_text(),
             'text' : item.find_all('div', class_ = 'weatherIco')[0].get('title')
         })
+    # if DATE:
+    #     print(tabulate(weather.['day']))
 
-    print(tabulate(weather))
+    print(tabulate(weather, tablefmt="psql"))
 
 
 def parse():
