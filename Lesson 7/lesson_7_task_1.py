@@ -4,45 +4,38 @@ import sqlite3
 
 class MyContextManagerSQLite:
 
+
     def __init__(self, name_file):
         self.name_file = name_file
-        self.conn = sqlite3.connect(self.name_file)
+
 
     def __enter__(self):
+        self.conn = sqlite3.connect(self.name_file)
         return self.conn
-
-    def write(self, request):
-        cursor = self.conn.cursor()
-        res = cursor.execute(request)
-
-        print(res)
 
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         
         self.conn.commit()
 
-        if exc_type == AttributeError:
-            print('Есть проблемы с атрибутом функции!')
-            print(exc_tb)
+        if exc_type:
+            raise
         self.conn.close()
         return True
 
 
+with MyContextManagerSQLite('students.db') as db_file:
+    cursor = db_file.cursor()
+    res = cursor.execute("INSERT INTO FACULTY ('id', 'name_faculty') VALUES (12, 'Факультет Информатики')")
+    print(res)
 
 
-# with MyContextManagerSQLite(test.db) as db_file:
-#     db_file.write()
-
-
-# import sqlite3
-
-# conn = sqlite3.connect('cars.db')
+# conn = sqlite3.connect('students.db')
 
 # cursor = conn.cursor()
 
 
-# res = cursor.execute("INSERT INTO cars ('price', 'make', 'model', 'num_of_wheels') VALUES (3000, 'BMW', 'e39', 4)")
+# res = cursor.execute("INSERT INTO FACULTY ('id', 'name_faculty') VALUES (11, 'Факультет Политологии')")
 
 # print(res)
 # conn.commit()
