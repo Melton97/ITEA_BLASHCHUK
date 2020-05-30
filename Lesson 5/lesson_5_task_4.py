@@ -3,9 +3,11 @@
 
 from datetime import datetime, date, time
 import re
+import shelve
 
 class Registration:
     
+    filename = 'Shelve_Global_Log'
     global_user_log = {}
 
     def __init__(self, user_name, login, password):
@@ -21,13 +23,20 @@ class Registration:
         corr = input("Если данные для регистрации введены верно, нажмите Y, если нет то N: ")
 
         if corr == 'Y' or 'y':
-            Registration.global_user_log = {
-                self.user_name: {
+            # Registration.global_user_log = {
+            #     self.user_name: {
+            #         "login": self.login,
+            #         "password": self.password,
+            #         "date_registration": datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+            #     }
+            # }
+
+            with shelve.open(Registration.filename) as db:
+                db[self.user_name] = {
                     "login": self.login,
                     "password": self.password,
-                    "date_registration": datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-                }
-            }
+                    "date_registration": datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S") }
+
             print("Регистрация прошла успешно, спасибо!")
      
         elif corr == 'N':
@@ -39,6 +48,7 @@ class Registration:
 
 class Authorisation(Registration):
     
+    file_posts = 'File_with_Posts'
     posts = {}
 
     def __init__(self,user_name, login, password):
@@ -47,17 +57,31 @@ class Authorisation(Registration):
         self.password = password
     
     def Sign_In(self, login, password):
-        if Registration.global_user_log[self.user_name]["login"] == self.login and Registration.global_user_log[self.user_name]["password"] == self.password:
-            print(f"Вы ввошли в аккаунт под именем {self.user_name}")        
-        else: pass
+        # if Registration.global_user_log[self.user_name]["login"] == self.login and Registration.global_user_log[self.user_name]["password"] == self.password:
+        #     print(f"Вы ввошли в аккаунт под именем {self.user_name}")        
+        # else: pass
+
+        with shelve.open(Registration.filename) as db:
+            login = self.login
+            passw = self.password
+            if login and passw in db:
+                print(f"Вы ввошли в аккаунт под именем {self.user_name}")
+
+
     def Exit(self):
         return print(f"Вы вышли с аккаунта {self.user_name}")
 
     def Change_Account(self,user_name, login, password):
         print("Вход в другой аккаунт:")
-        if Registration.global_user_log[self.user_name]["login"] == self.login and Registration.global_user_log[self.user_name]["password"] == self.password:
-            print(f"Вы ввошли в аккаунт под именем {self.user_name}")        
-        else: pass
+        # if Registration.global_user_log[self.user_name]["login"] == self.login and Registration.global_user_log[self.user_name]["password"] == self.password:
+        #     print(f"Вы ввошли в аккаунт под именем {self.user_name}")        
+        # else: pass
+
+        with shelve.open(Registration.filename) as db:
+            login = self.login
+            passw = self.password
+            if login in db and passw in db:
+                print(f"Вы ввошли в аккаунт под именем {self.user_name}")
         
 
 class User(Authorisation):
@@ -66,13 +90,15 @@ class User(Authorisation):
 
         post = input("Введите текст поста который нужно опубликовать: \n")
 
-        Authorisation.posts = {
-            self.user_name: {
-            "post": post,
-            "post_date": datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-        }}
+        # Authorisation.posts = {
+        #     self.user_name: {
+        #     "post": post,
+        #     "post_date": datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+        # }}
+            
+        # print(Authorisation.posts)
 
-        print(Authorisation.posts)
+
         
     def Admin_user(self, key):
 
@@ -134,7 +160,7 @@ admin_key = 'super_user'
 
 user1 = Registration(user_name, login, password)
 user1.Sign_Up()
-print(Registration.global_user_log)
+# print(Registration.)
 
 user1 = Authorisation(user_name, login, password)
 user1.Sign_In(login, password)
