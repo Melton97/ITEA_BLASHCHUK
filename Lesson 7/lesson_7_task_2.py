@@ -104,13 +104,3 @@ me = User(11345)
 # me.all_students()
 # me.search_student_by_stud_id(11345)
 me.view_info(11345)
-
-
-
-
-
-
-# with MyContextManagerSQLite('students.db') as db_file:
-#     cursor = db_file.cursor()
-#     res = cursor.execute("INSERT INTO FACULTY ('id', 'name_faculty') VALUES (12, 'Факультет Информатики')")
-#     print(res)
