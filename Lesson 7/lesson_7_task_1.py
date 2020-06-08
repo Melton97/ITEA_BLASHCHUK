@@ -26,17 +26,6 @@ class MyContextManagerSQLite:
 
 with MyContextManagerSQLite('students.db') as db_file:
     cursor = db_file.cursor()
-    res = cursor.execute("INSERT INTO FACULTY ('id', 'name_faculty') VALUES (12, 'Факультет Информатики')")
+    res = cursor.execute("INSERT INTO FACULTY ('id', 'name_faculty') VALUES (13, 'Факультет Метафизики')")
     print(res)
 
-
-# conn = sqlite3.connect('students.db')
-
-# cursor = conn.cursor()
-
-
-# res = cursor.execute("INSERT INTO FACULTY ('id', 'name_faculty') VALUES (11, 'Факультет Политологии')")
-
-# print(res)
-# conn.commit()
-# conn.close()
