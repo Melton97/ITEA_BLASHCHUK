@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if person%}
+    <title>{{person.name}}</title>
+    {% endif %}
+</head>
+<body>
+
+{% if person %}
+<h3> Detailed information about {{ person.name}} is {{person.description}}</h3>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1> Приветствую Вас!</h1>
+
+    {% for person in persons %}
+        <p>
+            <h4>Имя: <a href="{{person.name}}"> {{person.name}} </a> </h4>
+            <h4>Возраст: {{person.age}} </h4>
+            <h4>Хобби: {{person.hobbie}} </h4>
+
+            {% if person.age < 18 %}
+                <h5> The person is younger than 18</h5>
+            {% else %}
+                <h5> The person is adult </h5>
+            {% endif %}
+        </p>
+        <br>
+    {% endfor %}
+</body>
+</html>
