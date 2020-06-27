@@ -1,5 +1,5 @@
 # 1) Создать базу данных товаров, у товара есть: 
-# Категория (связанная таблица), название, есть ли товар в продаже или на складе, цена, кол-во
+# Category (связанная таблица), name, есть ли товар в продаже или на складе, price, кол-во
 # единиц.
 # Создать html страницу. На первой странице выводить ссылки на все
 # категории, при переходе на категорию получать список всех товаров в
@@ -21,32 +21,39 @@ app = Flask(__name__)
        </html>
        """
 
-persons = [
-    {'name': 'John', 'age': 20, 'hobbie': 'Football', 'description': ',....'},
-    {'name': 'Luci', 'age': 16, 'hobbie': 'Programming', 'description': ',....'}
+products = [
+    {'Category': 'Овощи', 'name': 'Помидор', 'on_stock': True, 'price': 25, 'quantity': 50},
+    {'Category': 'Овощи', 'name': 'Огурец', 'on_stock': True, 'price': 25, 'quantity': 50},
+    {'Category': 'Фрукты', 'name': 'Яблоко', 'on_stock': True, 'price': 15, 'quantity': 25},
+    {'Category': 'Фрукты', 'name': 'Черешня', 'on_stock': True, 'price': 15, 'quantity': 25},
+    {'Category': 'Зелень', 'name': 'Укроп', 'on_stock': True, 'price': 267, 'quantity': 500},
+    {'Category': 'Зелень', 'name': 'Петрушка', 'on_stock': True, 'price': 267, 'quantity': 500},
 ]
 
 
 @app.route('/')
-def show_persons():
-    return render_template('index.html', persons=persons)
+def show_categories():
+    products_1 = []
+    for _indx, prod in enumerate(products):
+        products_1.append(prod["Category"])
+    categories = set(products_1)
+    return render_template('index.html', categories=categories)
 
 
-@app.route('/<name>')
-def show_certain_person(name):
-    person_obj = None
-    for _id, person in enumerate(persons):
-        if name in person.values():
-            person_obj = persons[_id]
-            break
+@app.route('/<Category>')
+def show_category_products(Category):
+    list_cat_prod = []
+    for _id, cat in enumerate(products):
+        if Category in cat.values():
+            list_cat_prod.append(products[_id])
 
-    return render_template('person_page.html', person=person_obj)
+    return render_template('category.html', list_cat=list_cat_prod, category=Category)
 
 
-@app.route('/values/<int:id>')
-def integer_handler(id):
-    print(id)
-    return str(id)
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+    
 
 
 if __name__ == '__main__':

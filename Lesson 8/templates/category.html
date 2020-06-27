@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{{category}}</title>
+
+</head>
+<body>
+    <h1>Список продуктов категории {{category}}:</h1>
+
+    {% for prod in list_cat %}
+        <p>
+            <h4>Название: {{ prod.name }}</h4>
+            <h4>В наличии: {{ prod.on_stock }}</h4>
+            <h4>Цена: {{ prod.price }}</h4>
+            <h4>Количество: {{ prod.quantity }}</h4>
+            <br>
+        </p>
+    
+    {% endfor %}
+</body>
+</html>
